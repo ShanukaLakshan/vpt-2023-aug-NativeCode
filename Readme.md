@@ -1,27 +1,71 @@
-1. Build/Compile the Application:
-   Instructions: Provide a clear README.md file in your project root detailing:
-   System requirements (e.g., Python version).
-   Step-by-step instructions for setting up the development environment.
-   Commands to run for starting the application.
-   Any environment configurations if required.
-2. Search Functionality :
-   API Calls: Use the OpenLibrary API efficiently. Handle possible errors gracefully (e.g., network issues, invalid input).
-   Feedback: Give the user feedback while searching, like a loading spinner.
-   Results: Display search results clearly, perhaps with a thumbnail image of the book if available. If no results are found, inform the user.
-3. Usability and User Interface :
-   Responsive Design: Ensure your web application is usable on both desktop and mobile devices.
-   Clear UI: Use intuitive icons and labels. Buttons should be clearly distinguishable from other UI elements.
-   Feedback: Provide user feedback, e.g., when a search is in progress, or if there's an error.
-4. Display Individual Book Details :
-   Details Page: A clean layout that displays important book details without overwhelming the user. Include the title, author, description, and cover image if available.
-   Navigation: A clear way for the user to return to the search results or home page.
-5. Code Quality and Documentation :
-   Coding Standards: Write clean, modular, and maintainable code.
-   Avoid large functions or classes; keep things modular.
-   Use meaningful variable, function, and class names.
-   Comments: Comment your code where necessary. Especially for complex logic.
-   Documentation: Beyond the README, consider adding inline documentation to your code. Tools like Doxygen for C++ or JSDoc for JavaScript can help.
-6. Web Application Hosting :
-   Platform: Use platforms like Heroku, Netlify, or Vercel for hosting your application. They offer free tiers that are sufficient for small projects.
-   Instructions: In your README, provide the link to the hosted application.
-   Uptime: Ensure your application has a high uptime. Regularly check and ensure there are no issues with the hosted application.
+# Book Search App
+
+A simple web application to search for books using the OpenLibrary API.
+
+## Table of Contents
+
+- [Description](#description)
+- [Technical Stack](#technical-stack)
+- [Folder Structure](#folder-structure)
+- [Local Setup](#local-setup)
+- [Adapting Flask for Vercel](#adapting-flask-for-vercel)
+- [Deployment to Vercel](#deployment-to-vercel)
+- [Future Enhancements](#future-enhancements)
+
+## Description
+
+Search books by keywords, view results, and delve into detailed book data.
+
+## Technical Stack
+
+- Backend: Flask (Python)
+- Frontend: Basic HTML/CSS with JavaScript (jQuery)
+- API: OpenLibrary
+
+## Folder Structure
+
+```plaintext
+book_search_app/
+│
+├── api/
+│   └── index.py
+│
+├── templates/
+│   └── index.html
+│
+├── static/
+│   ├── css/
+│   │   └── styles.css
+│   │
+│   └── js/
+│       └── scripts.js
+│
+├── vercel.json
+│
+├── requirements.txt
+│
+└── .gitignore
+```
+
+## Local Setup
+
+1. Clone the repository:
+
+```bash
+git clone [REPO_URL]
+
+cd book_search_app
+
+
+pip install -r requirements.txt
+
+FLASK_APP=book_search_app/app.py FLASK_ENV=development flask run
+
+
+Open http://127.0.0.1:5000/ in your browser.
+
+Adapting Flask for Vercel
+The application is adapted to run as a serverless function on Vercel. The Flask app is housed within the api directory and is configured to respond to Vercel's expected handler function.
+
+
+```
