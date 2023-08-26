@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import requests
 
 app = Flask(__name__)
@@ -28,6 +28,12 @@ def book(book_id):
         print(book_data)
         return render_template('book.html', book=book_data)
     return "Error fetching book details", 400
+
+# Vercel expects a handler function
+
+
+def handler(environ, start_response):
+    return app(environ, start_response)
 
 
 if __name__ == '__main__':
