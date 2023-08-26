@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book Search</title>
+    <!-- Add Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      .book-card {
+        transition: all 0.3s; /* Smooth transition for all properties */
+      }
+
+      .book-card:hover {
+        transform: scale(1.05); /* Slightly scale the card */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container mt-5" style="background: #53b692">
+      <h1 class="text-center mb-4">Book Search</h1>
+
+      <form method="post" class="mb-4" id="searchForm">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="query"
+            placeholder="Search for a book"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+
+      <!-- Spinner -->
+      <div class="text-center" id="spinner" style="display: none">
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+      <div class="row">
+        {% for result in results %}
+        <div class="col-md-3 mb-3">
+          <a
+            href="{{ url_for('book', book_id=result['key'].split('/')[-1]) }}"
+            style="text-decoration: none; color: inherit"
+          >
+            <div class="book-card card">
+              <div class="card-body">
+                <h5 class="card-title book-card-title">
+                  {{ result['title'] }}
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted book-card-author">
+                  {{ result['author'] }}
+                </h6>
+                <p class="card-text book-card-edition">
+                  {{ result['edition'] }}
+                </p>
+                {% if result.cover_i %}
+                <img
+                  src="http://covers.openlibrary.org/b/id/{{ result.cover_i }}-M.jpg"
+                  alt="{{ result.title }} Cover"
+                  class="card-img-top mb-2"
+                />
+                {% else %}
+                <img
+                  src="https://previews.123rf.com/images/gustavofrazao/gustavofrazao1510/gustavofrazao151016873/60489233-progress-bar-loading-with-the-text-e-book.jpg"
+                  alt="Demo Image"
+                  class="card-img-top mb-2"
+                />
+                {% endif %}
+              </div>
+            </div>
+          </a>
+          <!-- closing the link here -->
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const spinner = document.getElementById("spinner");
+
+        form.addEventListener("submit", function (e) {
+          spinner.style.display = "block"; // show the spinner when the form is submitted
+        });
+      });
+    </script>
+
+    <!-- Add Bootstrap JS and Popper.js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

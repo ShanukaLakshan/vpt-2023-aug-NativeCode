@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ book.title }}</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body class="bg-light p-5">
+    <div class="container bg-white p-5 rounded shadow">
+      <h1 class="display-4 mb-4">{{ book.title }}</h1>
+
+      <!-- Display the book cover image -->
+      <div class="mb-4">
+        <img
+          src="http://covers.openlibrary.org/b/id/{{ book.cover_i }}-M.jpg"
+          alt="{{ book.title }} Cover"
+          class="img-fluid rounded"
+        />
+      </div>
+
+      <!-- Display list of places related to the subject -->
+      <h3>Subject Places:</h3>
+      <ul class="list-group mb-4">
+        {% for place in book.subject_places %}
+        <li class="list-group-item">{{ place }}</li>
+        {% endfor %}
+      </ul>
+
+      <!-- Display list of subjects -->
+      <h3>Subjects:</h3>
+      <ul class="list-group mb-4">
+        {% for subject in book.subjects %}
+        <li class="list-group-item">{{ subject }}</li>
+        {% endfor %}
+      </ul>
+
+      <!-- Displaying creation and modification dates -->
+      <p><strong>Created On:</strong> {{ book.created.value }}</p>
+      <p><strong>Last Modified On:</strong> {{ book.last_modified.value }}</p>
+
+      <a href="{{ url_for('index') }}" class="btn btn-primary"
+        >Back to search</a
+      >
+    </div>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
