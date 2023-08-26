@@ -27,18 +27,10 @@ Search books by keywords, view results, and delve into detailed book data.
 ```plaintext
 book_search_app/
 │
-├── api/
-│   └── index.py
+├── app.py
 │
 ├── templates/
 │   └── index.html
-│
-├── static/
-│   ├── css/
-│   │   └── styles.css
-│   │
-│   └── js/
-│       └── scripts.js
 │
 ├── vercel.json
 │
